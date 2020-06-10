@@ -1,0 +1,294 @@
+{
+  "info": {
+    "_postman_id": "b4703851-68cf-4ccf-b543-1d65fb80021f",
+    "name": "IPA",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "T-01",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\t\"notANameKeyWord\": \"myWallet\",\r\n\t\"fakePAssphrase\": \"mySecretPassphrase\"\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/v1/123321123321/wallet",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "v1",
+            "123321123321",
+            "wallet"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "T-02",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"name\": \"myWallet\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/v1/123321123321/wallet",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "v1",
+            "123321123321",
+            "wallet"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "T-03",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/api/v1/123321123321/myWallet?wallet_passphrase=mySecretPassphrase",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "v1",
+            "123321123321",
+            "myWallet"
+          ],
+          "query": [
+            {
+              "key": "wallet_passphrase",
+              "value": "mySecretPassphrase"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "T-04",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"name\": \"myWallet\",\n\t\"passphrase\": \"mySecretPassphrase\",\n\t\"seed\": \"12312312312312312312312312312312\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/v1/123321123321/did",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "v1",
+            "123321123321",
+            "did"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "T-05",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"name\": \"myWallet\",\n\t\"passphrase\": \"mySecretPassphrase\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/v1/123321123321/wallet",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "v1",
+            "123321123321",
+            "wallet"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "T-06",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/api/v1/123321123321/myNotExistingWallet?wallet_passphrase=mySecretPassphrase",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "v1",
+            "123321123321",
+            "myNotExistingWallet"
+          ],
+          "query": [
+            {
+              "key": "wallet_passphrase",
+              "value": "mySecretPassphrase"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "T-07",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"name\": \"myWallet\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/v1/123321123321/wallet",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "v1",
+            "123321123321",
+            "wallet"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "T-08",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\t\"notANameKeyWord\": \"myWallet\",\r\n\t\"fakePAssphrase\": \"mySecretPassphrase\"\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/v1/123321123321/wallet",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "v1",
+            "123321123321",
+            "wallet"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "protocolProfileBehavior": {}
+}

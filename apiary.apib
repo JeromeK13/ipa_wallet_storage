@@ -1,0 +1,271 @@
+FORMAT: 1A
+HOST: https://polls.apiblueprint.org/
+
+# ipa_wallet_storage
+
+Documentation of the IPA-Wallet-Storage-Microservice.
+
+## Hyperledger Indy Collection [/api/v1]
+
+### Create a New Wallet [POST /api/v1/{accountID}/wallet]
+
+Creates a new Wallet for the given AccountID.
+
++ Parameters
+    + accountID: 123321123321 (string) 
+    
+
++ Request (application/json)
+    
+    + `name` Name will be used to identify the wallet
+    + `passphrase` Passphrase will be used to open the Wallet
+    
+    + Attributes
+        + name: myWallet (string)
+        + passphrase: mySecretPassphrase (string) 
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "detail": [
+                {
+                  "msg": "Successfully create Wallet: myWallet for AccountID: 123321123321",
+                  "type": "request_success"
+                }
+              ]
+            }
+
++ Response 409 (application/json)
+
+        {
+          "detail": [
+            {
+              "msg": "AccountID already has a Wallet called: myWallet",
+              "type": "azure_error.409"
+            }
+          ]
+        }
+      
++ Response 422 (application/json)
+
+        {
+          "detail": [
+            {
+              "loc": [
+                "string"
+              ],
+              "msg": "string",
+              "type": "string"
+            }
+          ]
+        }
+    
++ Response 500 (application/json)
+
+        {
+          "detail": [
+            {
+              "msg": "error message",
+              "type": "(errorFunction)_error.(errorCode)"
+            }
+          ]
+        }
+
+### Get Wallet Information [GET /api/v1/{accountID}/{walletName}{?wallet_passphrase}]
+
+Reads the contained Informations of the stored Wallet for an AccountID.
+
++ Parameters
+    + accountID: 123321123321 (string) 
+    + walletName: myWallet (string)
+    + wallet_passphrase: mySecretPassphrase (string)
+
++ Response 200 (application/json)
+
+        {
+          "detail": [
+            {
+              "msg": {
+                "credentials": [],
+                "dids": [],
+                "pairwise": []
+              },
+              "type": "request_success"
+            }
+          ]
+        }
+
++ Response 404 (application/json)
+
+        {
+          "detail": [
+            {
+              "msg": "Wallet does not exists under this AccountID",
+              "type": "azure_error.404"
+            }
+          ]
+        }
+
++ Response 422 (application/json)
+
+        {
+          "detail": [
+            {
+              "loc": [
+                "string"
+              ],
+              "msg": "string",
+              "type": "string"
+            }
+          ]
+        }
+
++ Response 500 (application/json)
+
+        {
+          "detail": [
+            {
+              "msg": "error message",
+              "type": "(errorFunction)_error.(errorCode)"
+            }
+          ]
+        }
+
+### Create a New DID [POST /api/v1/{accountID}/did]
+
+Creates a new DID inside the given Wallet for the given AccountID.
+
++ Parameters
+    + accountID: 123321123321 (string) 
+    
++ Request (application/json)
+    
+    + `name` Name will be used to identify the wallet
+    + `passphrase` Passphrase will be used to open the Wallet
+    + `seed` Seed is optional. If a seed is Provided it has to be 32 Characters long. Its recommend to ignore this attribute.
+    
+        
+    + Attributes
+        + name: myWallet (string)
+        + passphrase: mySecretPassphrase (string) 
+        + seed: 12312312312312312312312312312312 (string)
+
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "detail": [
+                {
+                  "msg": 
+                    {
+                        "did": "JyLVbQi9J4u5zSXpwLyC68",
+                        "verkey":"Ao7JKEtCikMoWqgzt44EAuJy9A52oWNMYZfuGiJLJMPR"
+                    },
+                  "type": "request_success"
+                }
+              ]
+            }
+
++ Response 404 (application/json)
+
+        {
+          "detail": [
+            {
+              "msg": "Wallet does not exists under this AccountID",
+              "type": "azure_error.404"
+            }
+          ]
+        }
+
++ Response 422 (application/json)
+
+        {
+          "detail": [
+            {
+              "loc": [
+                "string"
+              ],
+              "msg": "string",
+              "type": "string"
+            }
+          ]
+        }
+        
++ Response 500 (application/json)
+
+        {
+          "detail": [
+            {
+              "msg": "error message",
+              "type": "(errorFunction)_error.(errorCode)"
+            }
+          ]
+        }
+        
+### Delete a Wallet [DELETE /api/v1/{accountID}/wallet]
+
+Delets a Wallet for the given AccountID
+
++ Parameters
+    + accountID: 123321123321 (string)
+    
++ Request (application/json)
+    
+    + `name` Name will be used to identify the wallet
+        
+    + Attributes
+        + name: myWallet (string)
+
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "detail": [
+                {
+                  "msg": "Wallet: myWallet successfully deleted from the Azure Cloud Storage",
+                  "type": "request_success"
+                }
+              ]
+            }
+
++ Response 404 (application/json)
+
+        {
+          "detail": [
+            {
+              "msg": "Wallet does not exists under this AccountID",
+              "type": "azure_error.404"
+            }
+          ]
+        }
+
++ Response 422 (application/json)
+
+        {
+          "detail": [
+            {
+              "loc": [
+                "string"
+              ],
+              "msg": "string",
+              "type": "string"
+            }
+          ]
+        }
+        
++ Response 500 (application/json)
+
+        {
+          "detail": [
+            {
+              "msg": "error message",
+              "type": "(errorFunction)_error.(errorCode)"
+            }
+          ]
+        }

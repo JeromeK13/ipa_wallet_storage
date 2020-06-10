@@ -1,0 +1,49 @@
+trigger:
+  branches:
+    include:
+      - master
+  paths:
+    exclude:
+      - .gitignore
+      - README.md
+      - apiary.apib
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  APP_NAME: ipawalletstorage
+  APP_NAMESPACE: ssigate
+  docker_repository: sbcloudauthenticator.azurecr.io
+  AZURE_ACCOUNT_NAME: indystorage
+  AZURE_STORAGE_KEY: KrM4r83Tl2jUH2mL/auS7oArf6sUOxC4BAyz4j7tMBkTHoC3F4e7i9uR3KWE9HlJEnTGBadCBkYSigBFfjPeyg==
+  AZURE_WALLETS_SHARE: ipawallets
+
+resources:
+  repositories:
+    - repository: templates
+      type: git
+      name: SSIGate/common
+
+steps:
+- task: Docker@2
+  displayName: 'Docker login'
+  inputs:
+    containerRegistry: 'cloudauthenticator-registry'
+    command: 'login'
+
+- script: docker pull $(docker_repository)/$(APP_NAME):latest || true
+  displayName: 'Docker pull'
+
+- task: Docker@2
+  displayName: 'Docker build and push'
+  inputs:
+    containerRegistry: 'cloudauthenticator-registry'
+    repository: '$(APP_NAME)'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
+    tags: |
+      $(Build.BuildId)
+      latest
+
+- template: publish-k8s-config.yaml@templates
